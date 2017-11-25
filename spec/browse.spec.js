@@ -5,17 +5,7 @@
 //   `--port=${port}`
 // ]
 
-// const browser = require('../browser')
-
-import { browser } from '../browser'
-
-beforeEach(function () {
-  return browser.init()
-})
-
-afterEach(function () {
-  return browser.end()
-})
+const browser = global.browser
 
 describe('webdriver.io api page', function () {
   it('should be able to filter for commands', async function () {
