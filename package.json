@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "./node_modules/.bin/jest"
+    "test": "./node_modules/.bin/jest --testMatch='<rootDir>/spec/(unit|integration)/*.spec.js'",
+    "acceptance-test": "./node_modules/.bin/jest --testEnvironment=./spec/acceptance/acceptance_test_environment.js --testMatch='<rootDir>/spec/acceptance/**/*.spec.js'"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -34,8 +35,5 @@
     "wdio-spec-reporter": "^0.1.3",
     "webdriverio": "^4.9.9",
     "webpack": "^3.8.1"
-  },
-  "jest": {
-    "testEnvironment": "./spec/acceptance_test_environment.js"
   }
 }

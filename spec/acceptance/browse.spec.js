@@ -13,6 +13,7 @@ describe('webdriver.io api page', function () {
 
     const result = await browser.getTitle()
 
+    // expect(result).toEqual('Home | nayema.github.io')
     expect(result).toEqual('WebdriverIO - WebDriver bindings for Node.js1111111111')
   })
 
