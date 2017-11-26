@@ -1,11 +1,12 @@
-const chromedriver = require('chromedriver')
+import chromedriver from 'chromedriver'
+import { remote } from 'webdriverio'
+
 const port = 9515
 const args = [
   '--url-base=wd/hub',
   `--port=${port}`
 ]
 
-const webdriverio = require('webdriverio')
 const options = {
   host: 'localhost',
   port: port,
@@ -16,7 +17,7 @@ const options = {
 
 class AcceptanceTestEnvironment {
   constructor () {
-    this.browser = webdriverio.remote(options)
+    this.browser = remote(options)
   }
 
   async setup () {
