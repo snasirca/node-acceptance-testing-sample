@@ -1,5 +1,3 @@
-const NodeEnvironment = require('jest-environment-node')
-
 const chromedriver = require('chromedriver')
 const port = 9515
 const args = [
@@ -16,19 +14,22 @@ const options = {
   }
 }
 
-class AcceptanceTestEnvironment extends NodeEnvironment {
-  async setup () {
-    await super.setup()
-    await chromedriver.start(args)
-    this.global.browser = webdriverio.remote(options)
-    await this.global.browser.init()
+class AcceptanceTestEnvironment {
+  constructor () {
+    this.browser = webdriverio.remote(options)
   }
 
-  async teardown () {
-    await this.global.browser.end()
+  async setup () {
+    await chromedriver.start(args)
+    await this.browser.init()
+  }
+
+  async tearDown () {
+    await this.browser.end()
     await chromedriver.stop()
-    await super.teardown()
   }
 }
 
-module.exports = AcceptanceTestEnvironment
+const environment = new AcceptanceTestEnvironment()
+const browser = environment.browser
+export { environment, browser }

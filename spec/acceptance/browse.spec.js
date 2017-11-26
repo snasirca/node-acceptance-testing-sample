@@ -1,4 +1,12 @@
-const browser = global.browser
+import { environment, browser } from './acceptance_spec_helper'
+
+beforeEach(async function () {
+  await environment.setup()
+})
+
+afterEach(async function () {
+  await environment.tearDown()
+})
 
 describe('webdriver.io api page', function () {
   it('should be able to filter for commands', async function () {
