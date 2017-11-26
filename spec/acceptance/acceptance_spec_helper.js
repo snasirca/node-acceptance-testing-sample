@@ -17,14 +17,14 @@ const options = {
   }
 }
 
-app.set('port', 3000)
 const server = http.createServer(app)
 
 const browser = remote(options)
 
 function setupEnvironment () {
   beforeAll(async () => {
-    await server.listen(3000)
+    await server.listen()
+    app.set('port', server.address().port)
     await chromedriver.start(args)
   })
 
@@ -42,4 +42,8 @@ function setupEnvironment () {
   })
 }
 
-export { setupEnvironment, browser }
+function getPort () {
+  return server.address().port
+}
+
+export { setupEnvironment, browser, getPort }
