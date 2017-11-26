@@ -4,18 +4,10 @@ setupEnvironment()
 
 describe('browser', function () {
   it('is able to retrieve the title of a page', async function () {
-    await browser.url('http://nayemanasir.com')
+    await browser.url('http://localhost:3000')
 
     const result = await browser.getTitle()
 
-    expect(result).toEqual('Home | nayema.github.io')
-  })
-
-  it('is able to retrieve the title of another page', async function () {
-    await browser.url('http://github.snasir.ca')
-
-    const result = await browser.getTitle()
-
-    expect(result).toEqual('Shahriyar Nasir')
+    expect(result).toEqual('Express')
   })
 })
