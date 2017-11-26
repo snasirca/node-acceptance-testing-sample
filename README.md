@@ -20,3 +20,8 @@ This sample project demonstrates how to use WebdriverIO, Chrome, and Jest to wri
    })
    ```
    This will start and stop the WebdriverIO and `chromedriver`.
+4. Use the `browser` import to drive the browser instance:
+   ```javascript
+   await browser.url('http://snasir.ca')
+   const result = await browser.getTitle()
+   ```
