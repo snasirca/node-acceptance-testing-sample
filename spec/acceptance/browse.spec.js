@@ -8,8 +8,8 @@ afterEach(async function () {
   await environment.tearDown()
 })
 
-describe('webdriver.io api page', function () {
-  it('should be able to filter for commands', async function () {
+describe('browser', function () {
+  it('is able to retrieve the title of a page', async function () {
     await browser.url('http://nayemanasir.com')
 
     const result = await browser.getTitle()
@@ -17,7 +17,7 @@ describe('webdriver.io api page', function () {
     expect(result).toEqual('Home | nayema.github.io')
   })
 
-  it('123should be able to filter for commands', async function () {
+  it('is able to retrieve the title of another page', async function () {
     await browser.url('http://github.snasir.ca')
 
     const result = await browser.getTitle()
