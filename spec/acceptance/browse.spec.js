@@ -1,7 +1,6 @@
-import { environment, browser } from './acceptance_spec_helper'
+import { setupEnvironment, browser } from './acceptance_spec_helper'
 
-beforeEach(async () => { await environment.setup() })
-afterEach(async () => { await environment.tearDown() })
+setupEnvironment()
 
 describe('browser', function () {
   it('is able to retrieve the title of a page', async function () {

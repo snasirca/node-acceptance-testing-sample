@@ -15,22 +15,24 @@ const options = {
   }
 }
 
-class AcceptanceTestEnvironment {
-  constructor () {
-    this.browser = remote(options)
-  }
+const browser = remote(options)
 
-  async setup () {
+function setupEnvironment () {
+  beforeAll(async () => {
     await chromedriver.start(args)
-    await this.browser.init()
-  }
+  })
 
-  async tearDown () {
-    await this.browser.end()
+  beforeEach(async () => {
+    await browser.init()
+  })
+
+  afterEach(async () => {
+    await browser.end()
+  })
+
+  afterAll(async () => {
     await chromedriver.stop()
-  }
+  })
 }
 
-const environment = new AcceptanceTestEnvironment()
-const browser = environment.browser
-export { environment, browser }
+export { setupEnvironment, browser }
