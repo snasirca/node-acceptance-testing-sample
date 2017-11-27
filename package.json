@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "start-dev": "nodemon ./bin/www",
     "test": "./node_modules/.bin/jest",
     "unit-integration-test": "./node_modules/.bin/jest --testMatch='<rootDir>/spec/(unit|integration)/*.spec.js'",
     "acceptance-test": "./node_modules/.bin/jest --testMatch='<rootDir>/spec/acceptance/**/*.spec.js'"
@@ -29,10 +30,13 @@
     "eslint-plugin-standard": "^3.0.1",
     "get-port": "^3.2.0",
     "jest": "^21.3.0-beta.10",
+    "nodemon": "^1.12.1",
     "standard": "^10.0.3",
     "webdriverio": "^4.9.9"
   },
   "babel": {
-    "presets": ["env"]
+    "presets": [
+      "env"
+    ]
   }
 }
