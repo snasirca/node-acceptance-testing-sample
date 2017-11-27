@@ -1,4 +1,4 @@
-import { setupEnvironment, browser, localUrl } from './acceptance_spec_helper'
+import { setupEnvironment, browser, localUrl } from './acceptance-spec-helper'
 
 setupEnvironment()
 
