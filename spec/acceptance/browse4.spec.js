@@ -2,7 +2,7 @@ import { setupEnvironment, browser, _getPort } from './acceptance_spec_helper'
 
 setupEnvironment()
 
-describe('browser2', function () {
+describe('browser4', function () {
   it('is able to retrieve the title of a page', async function () {
     await browser.url('http://localhost:' + _getPort())
 
