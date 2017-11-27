@@ -1,19 +1,19 @@
-import express from 'express'
-import path from 'path'
-// import favicon from 'serve-favicon'
-import fs from 'fs'
-import logger from 'morgan'
-import cookieParser from 'cookie-parser'
-import bodyParser from 'body-parser'
+const express = require('express')
+const handlebars = require('express-handlebars')
+const path = require('path')
+// const favicon = require('serve-favicon')
+const fs = require('fs')
+const logger = require('morgan')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
 
-import index from './routes/index'
-import users from './routes/users'
+const index = require('./routes/index')
+const users = require('./routes/users')
 
 const app = express()
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'jade')
+app.engine('handlebars', handlebars({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
