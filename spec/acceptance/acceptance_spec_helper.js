@@ -45,8 +45,8 @@ function setupEnvironment () {
   })
 }
 
-function _getPort () {
-  return server.address().port
+function localUrl () {
+  return 'http://localhost:' + server.address().port
 }
 
-export { setupEnvironment, browser, _getPort }
+export { setupEnvironment, browser, localUrl }
