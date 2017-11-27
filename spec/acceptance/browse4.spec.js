@@ -1,13 +1,10 @@
-import { setupEnvironment, browser, localUrl } from './acceptance-spec-helper'
-
-setupEnvironment()
+import page from './home-page'
 
 describe('browser4', function () {
   it('is able to retrieve the title of a page', async function () {
-    await browser.url(localUrl())
+    await page.open()
 
-    const result = await browser.getTitle()
-    // const result = 'Express'
+    const result = await page.title
 
     expect(result).toEqual('Express')
   })

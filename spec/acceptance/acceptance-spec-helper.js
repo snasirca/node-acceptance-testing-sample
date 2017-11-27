@@ -1,52 +1,71 @@
-import getPort from 'get-port'
+import getOpenPort from 'get-port'
 import chromedriver from 'chromedriver'
 import { remote } from 'webdriverio'
 import http from 'http'
 import app from '../../app'
 
-const server = http.createServer(app)
+class AcceptanceSpecHelper {
+  constructor () {
+    this._server = http.createServer(app)
+  }
 
-let port
-let browser
+  setup () {
+    beforeAll(async () => {
+      await this._server.listen()
+      app.set('port', this._server.address().port)
+      await this._startChromedriver()
+      await this._createBrowser()
+    })
 
-function setupEnvironment () {
-  beforeAll(async () => {
-    await server.listen()
-    app.set('port', server.address().port)
+    beforeEach(async () => {
+      await this._browser.init()
+    })
 
-    port = await getPort()
+    afterEach(async () => {
+      await this._browser.end()
+    })
+
+    afterAll(async () => {
+      await this._server.close()
+      await chromedriver.stop()
+    })
+  }
+
+  get browser () {
+    return this._browser
+  }
+
+  get localUrl () {
+    return 'http://localhost:' + this._server.address().port
+  }
+
+  async _startChromedriver () {
     const args = [
       '--url-base=wd/hub',
-      `--port=${port}`
+      `--port=${await this._getChromedriverPort()}`
     ]
     await chromedriver.start(args)
+  }
 
+  async _createBrowser () {
     const options = {
       host: 'localhost',
-      port: port,
+      port: await this._getChromedriverPort(),
       desiredCapabilities: {
         browserName: 'chrome'
       }
     }
-    browser = remote(options)
-  })
+    this._browser = remote(options)
+  }
 
-  beforeEach(async () => {
-    await browser.init()
-  })
-
-  afterEach(async () => {
-    await browser.end()
-  })
-
-  afterAll(async () => {
-    await server.close()
-    await chromedriver.stop()
-  })
+  async _getChromedriverPort () {
+    if (this._port === undefined) {
+      this._port = await getOpenPort()
+      return this._port
+    } else {
+      return this._port
+    }
+  }
 }
 
-function localUrl () {
-  return 'http://localhost:' + server.address().port
-}
-
-export { setupEnvironment, browser, localUrl }
+export default new AcceptanceSpecHelper()
