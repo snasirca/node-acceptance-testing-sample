@@ -38,5 +38,13 @@
     "presets": [
       "env"
     ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "standard"
+    ],
+    "env": {
+      "jest": true
+    }
   }
 }
