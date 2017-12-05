@@ -1,4 +1,4 @@
-import page from './home-page'
+import page from './support/home-page'
 
 describe('browser2', function () {
   it('is able to retrieve the title of a page', async function () {

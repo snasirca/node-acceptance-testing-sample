@@ -2,7 +2,7 @@ import getOpenPort from 'get-port'
 import chromedriver from 'chromedriver'
 import { remote } from 'webdriverio'
 import http from 'http'
-import app from '../../app'
+import app from '../../../app'
 
 class AcceptanceSpecHelper {
   constructor () {
