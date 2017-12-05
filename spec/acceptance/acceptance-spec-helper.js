@@ -13,7 +13,7 @@ class AcceptanceSpecHelper {
     beforeAll(async () => {
       await this._server.listen()
       app.set('port', this._server.address().port)
-      await this._startChromedriver()
+      // await this._startChromedriver()
       await this._createBrowser()
     })
 
@@ -27,7 +27,7 @@ class AcceptanceSpecHelper {
 
     afterAll(async () => {
       await this._server.close()
-      await chromedriver.stop()
+      // await chromedriver.stop()
     })
   }
 
@@ -59,12 +59,13 @@ class AcceptanceSpecHelper {
   }
 
   async _getChromedriverPort () {
-    if (this._port === undefined) {
-      this._port = await getOpenPort()
-      return this._port
-    } else {
-      return this._port
-    }
+    return 9515
+    // if (this._port === undefined) {
+    //   this._port = await getOpenPort()
+    //   return this._port
+    // } else {
+    //   return this._port
+    // }
   }
 }
 
