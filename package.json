@@ -34,6 +34,7 @@
     "standard": "^10.0.3",
     "stylelint": "^8.3.1",
     "stylelint-config-standard": "^18.0.0",
+    "supertest": "^3.0.0",
     "webdriverio": "^4.9.9"
   },
   "babel": {
