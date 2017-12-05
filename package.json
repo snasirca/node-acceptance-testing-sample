@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@types/jest": "^21.1.8",
+    "@types/supertest": "^2.0.4",
     "babel-preset-env": "^1.6.1",
     "chromedriver": "^2.33.2",
     "eslint": "^4.11.0",
